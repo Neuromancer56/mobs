@@ -1170,15 +1170,15 @@ function mob_class:do_env_damage()
 	-- is mob light sensitive, or scared of the dark :P
 	if self.light_damage ~= 0 then
 
-		local light
+		local light = minetest.get_natural_light(pos) or 0    --***********Neuro added this and commented out lines below
+		--local light
 
-		-- if max set to 16 then only kill mob with natural sunlight
-		if self.light_damage_max == 16 then
-			light = minetest.get_natural_light(pos) or 0
-		else
-			--light = minetest.get_node_light(pos) or 0      --**********Neuro
-			light = minetest.get_natural_light(pos) or 0      --**********Neuro
-		end
+		---- if max set to 16 then only kill mob with natural sunlight
+		--if self.light_damage_max == 16 then
+		--	light = minetest.get_natural_light(pos) or 0
+		--else
+		--	light = minetest.get_node_light(pos) or 0      
+		--end
 
 		if light >= self.light_damage_min
 		and light <= self.light_damage_max then
@@ -3945,7 +3945,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			pos, node, active_object_count, active_object_count_wider)
 
 		-- use instead of abm's chance setting when using lbm
-		if map_load and random(max(1, (chance * mob_chance_multiplier)/10)) > 1 then    --**********************Neuro added /10
+		if map_load and random(max(1, (chance * mob_chance_multiplier))) > 1 then    --**********************Neuro added /10  ultiplier)/10
 			return
 		end
 
