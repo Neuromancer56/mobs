@@ -1176,7 +1176,8 @@ function mob_class:do_env_damage()
 		if self.light_damage_max == 16 then
 			light = minetest.get_natural_light(pos) or 0
 		else
-			light = minetest.get_node_light(pos) or 0
+			--light = minetest.get_node_light(pos) or 0      --**********Neuro
+			light = minetest.get_natural_light(pos) or 0      --**********Neuro
 		end
 
 		if light >= self.light_damage_min
@@ -3944,7 +3945,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			pos, node, active_object_count, active_object_count_wider)
 
 		-- use instead of abm's chance setting when using lbm
-		if map_load and random(max(1, (chance * mob_chance_multiplier))) > 1 then
+		if map_load and random(max(1, (chance * mob_chance_multiplier)/10)) > 1 then    --**********************Neuro added /10
 			return
 		end
 
@@ -4088,7 +4089,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 		end
 	end
 
-
+	table.insert(nodes, "default:snow")   --*****************************************************Neuro  added line
 	-- are we registering an abm or lbm?
 	if map_load == true then
 
