@@ -4090,12 +4090,14 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 	end
 	
 	--*****************************************************Neuro  add start
-	local monsters = { "mobs_monster:dirt_monster", "mobs_monster:sand_monster", "mobs_monster:stone_monster", "mobs_monster:dungeon_master", "mobs_monster:fire_spirit", "mobs_monster:land_guard", "mobs_monster:lava_flan","mobs_monster:mese_monster", "mobs_monster:oerkki", "mobs_monster:spider", "mobs_monster:tree_monster"}
+	local monsters = { "mobs_skeletons:skeleton", "mobs_skeletons:skeleton_archer", "mobs_skeletons:skeleton_archer_dark", "mobs_monster:dirt_monster", "mobs_monster:sand_monster", "mobs_monster:stone_monster", "mobs_monster:dungeon_master", "mobs_monster:fire_spirit", "mobs_monster:land_guard", "mobs_monster:lava_flan",
+"mobs_monster:mese_monster", "mobs_monster:oerkki", "mobs_monster:spider", "mobs_monster:tree_monster", "mobs_ghost_redo:ghost", "dmobs:gnorm", "dmobs:wasp", "dmobs:wasp_leader", "dmobs:golem", "dmobs:pig_evil", "dmobs:treeman", "dmobs:skeleton", "dmobs:orc", "dmobs:ogre", "dmobs:dragon", "dmobs:dragon1", "dmobs:dragon2", "dmobs:dragon3", "dmobs:dragon4", "dmobs:waterdragon", "dmobs:wyvern", "dmobs:dragon_great"}
 	local is_monster = false
 	is_monster = check_for(name, monsters)
-
+	--minetest.log("name:",	name)
 	if is_monster then
 	  table.insert(nodes, "default:snow")
+	  table.insert(nodes, "default:snowblock")
 	end
 	--*****************************************************Neuro  add finish
 	
