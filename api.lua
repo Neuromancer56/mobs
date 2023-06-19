@@ -3945,7 +3945,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			pos, node, active_object_count, active_object_count_wider)
 
 		-- use instead of abm's chance setting when using lbm
-		if map_load and random(max(1, (chance * mob_chance_multiplier))) > 1 then    --**********************Neuro added /10  ultiplier)/10
+		if map_load and random(max(1, (chance * mob_chance_multiplier)/10)) > 1 then    --**********************Neuro added /10  ultiplier)/10
 			return
 		end
 
@@ -4088,8 +4088,17 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 --print("--- not enough space to spawn", name)
 		end
 	end
+	
+	--*****************************************************Neuro  add start
+	local monsters = { "mobs_monster:dirt_monster", "mobs_monster:sand_monster", "mobs_monster:stone_monster", "mobs_monster:dungeon_master", "mobs_monster:fire_spirit", "mobs_monster:land_guard", "mobs_monster:lava_flan","mobs_monster:mese_monster", "mobs_monster:oerkki", "mobs_monster:spider", "mobs_monster:tree_monster"}
+	local is_monster = false
+	is_monster = check_for(name, monsters)
 
-	table.insert(nodes, "default:snow")   --*****************************************************Neuro  added line
+	if is_monster then
+	  table.insert(nodes, "default:snow")
+	end
+	--*****************************************************Neuro  add finish
+	
 	-- are we registering an abm or lbm?
 	if map_load == true then
 
